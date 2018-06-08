@@ -94,7 +94,7 @@ async def my_background_task():
     await client.wait_until_ready()
     
     server = client.get_server(server_id)
-    channel = server.get_channel(server_id)
+    channel = server.get_channel(channel_id)
     
     while not client.is_closed:
         
