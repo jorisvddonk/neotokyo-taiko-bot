@@ -2,12 +2,13 @@ import valve.source.master_server
 import valve.source.a2s
 import discord
 import asyncio
+import os
 
-token = 'token'
-check_interval = 300 #query servers interval (in seconds)
-server_id = "124171198245502976" # nt server id
-channel_id = "174364630175449089" # neotokyo channel id
-player_count = 2 # player count threshold, if greater than forces msg about active servers
+token = os.environ.get('DISCORD_TOKEN', 'token') # Discord bot token
+check_interval = int(os.environ.get('SOURCE_CHECK_INTERVAL', 300)) # query servers interval (in seconds)
+server_id = os.environ.get('DISCORD_SERVER_ID', "124171198245502976") # nt server id
+channel_id = os.environ.get('DISCORD_CHANNEL_ID', "174364630175449089") # neotokyo channel id
+player_count = int(os.environ.get('PLAYER_COUNT_THRESHOLD', 2)) # player count threshold, if greater than forces msg about active servers
 
 # get list of servers, "ip:port"
 def get_servers(gamedir):
