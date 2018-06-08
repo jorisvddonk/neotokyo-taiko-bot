@@ -114,7 +114,7 @@ async def on_message(message):
     
     if message.content.startswith('!help'):
 #         print('help')
-        pass
+        await client.send_message(message.channel, 'Available commands: `!all`, `!active`')
         
     elif message.content.startswith('!all'):
 #         print('all')
