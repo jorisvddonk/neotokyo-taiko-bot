@@ -11,6 +11,20 @@
 1.  `docker build . -t taikobot`
 2.  `docker run -d -e "DISCORD_SERVER_ID=<YOUR_SERVER_ID>" -e "DISCORD_CHANNEL_ID=<YOUR_CHANNEL_ID>" -e "DISCORD_TOKEN=<YOUR_DISCORD_BOT_TOKEN>" taikobot`
 
+## Running with Dokku
+
+On the server:
+
+1. `dokku apps:create taiko-bot`
+2. `dokku config:set taiko-bot DISCORD_TOKEN=<YOUR_DISCORD_BOT_TOKEN>`
+3. `dokku config:set taiko-bot DISCORD_SERVER_ID=<YOUR_SERVER_ID>`
+4. `dokku config:set taiko-bot DISCORD_CHANNEL_ID=<YOUR_CHANNEL_ID>`
+
+In this repository:
+
+1. `git remote add dokku dokku@dokku.me:taiko-bot` (replace `dokku.me` with your own dokku host name. You only have to do this once)
+2. `git push dokku`
+
 ## Supported environment variables
 
 | Name                   | Default            | Description                                                                 |
