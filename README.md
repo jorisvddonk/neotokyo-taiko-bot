@@ -1,5 +1,7 @@
 # Taiko bot
 
+A simple Discord bot for displaying Neotokyo server information on user request.
+
 ## Running locally
 
 1.  `pip3 install -r requirements.txt`
