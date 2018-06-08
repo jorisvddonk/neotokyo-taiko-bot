@@ -10,6 +10,8 @@ server_id = os.environ.get('DISCORD_SERVER_ID', "124171198245502976") # nt serve
 channel_id = os.environ.get('DISCORD_CHANNEL_ID', "174364630175449089") # neotokyo channel id
 player_count = int(os.environ.get('PLAYER_COUNT_THRESHOLD', 2)) # player count threshold, if greater than forces msg about active servers
 
+SEND_WELCOME_MESSAGE = False # if true, sends a message to all available channels on all available servers that the bot is online.
+
 if token is None:
     raise Exception("No token set! Please set a token via the DISCORD_TOKEN environment variable!")
 
@@ -133,14 +135,15 @@ async def on_ready():
     print('------')
     
     # loops through all servers Taiko is connected to (good!)
-    for server in client.servers:
-        # loops through all channels, including voice
-        for channel in server.channels:
-            try:
-                # hello!
-                await client.send_message(channel, "Taiko-chan is online!")
-            except:
-                pass
+    if SEND_WELCOME_MESSAGE:
+        for server in client.servers:
+            # loops through all channels, including voice
+            for channel in server.channels:
+                try:
+                    # hello!
+                    await client.send_message(channel, "Taiko-chan is online!")
+                except:
+                    pass
         
 client.loop.create_task(my_background_task())
 client.run(token)
