@@ -4,11 +4,14 @@ import discord
 import asyncio
 import os
 
-token = os.environ.get('DISCORD_TOKEN', 'token') # Discord bot token
+token = os.environ.get('DISCORD_TOKEN', None) # Discord bot token
 check_interval = int(os.environ.get('SOURCE_CHECK_INTERVAL', 300)) # query servers interval (in seconds)
 server_id = os.environ.get('DISCORD_SERVER_ID', "124171198245502976") # nt server id
 channel_id = os.environ.get('DISCORD_CHANNEL_ID', "174364630175449089") # neotokyo channel id
 player_count = int(os.environ.get('PLAYER_COUNT_THRESHOLD', 2)) # player count threshold, if greater than forces msg about active servers
+
+if token is None:
+    raise Exception("No token set! Please set a token via the DISCORD_TOKEN environment variable!")
 
 # get list of servers, "ip:port"
 def get_servers(gamedir):
